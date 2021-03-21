@@ -17,9 +17,15 @@ Route::get('/', function () {
 
 Route::get('tests/test', 'TestController@index');
 
-Route::resource('contact', 'ContactFormController')->only([
-    'index', 'show'
-]);
+
+
+Route::group(['prefix' => 'contact', 'middleware' => 'auth'], function(){
+    Route::get('index', 'ContactFormController@index')->name('contact.index');
+});
+
+//Route::resource('contact', 'ContactFormController')->only([
+    //'index', 'show'
+//]);
 
 Auth::routes();
 
