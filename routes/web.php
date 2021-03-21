@@ -16,6 +16,11 @@ Route::get('/', function () {
 });
 
 Route::get('tests/test', 'TestController@index');
+
+Route::resource('contact', 'ContactFormController')->only([
+    'index', 'show'
+]);
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
